@@ -24,7 +24,7 @@ function App() {
 
     try {
       const res = await axios.post(
-        "https://fincra-backend.onrender.com/api/initiate-payment",
+        "https://fin-api-test-1.onrender.com/api/initiate-payment",
         formData
       );
       setPaymentLink(res.data.paymentLink);
