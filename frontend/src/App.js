@@ -86,7 +86,7 @@ function App() {
         {paymentLink && (
           <div className="payment-link">
             <a href={paymentLink} target="_blank" rel="noopener noreferrer">
-              Complete your payment
+              Click here to complete your payment
             </a>
           </div>
         )}
