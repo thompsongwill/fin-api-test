@@ -11,7 +11,6 @@ function App() {
   });
 
   const [loading, setLoading] = useState(false);
-  const [paymentLink, setPaymentLink] = useState("");
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -20,14 +19,16 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setPaymentLink("");
 
     try {
       const res = await axios.post(
         "https://fin-api-test-1.onrender.com/api/initiate-payment",
         formData
       );
-      setPaymentLink(res.data.paymentLink);
+      const link = res.data.paymentLink;
+
+      // Automatically redirect to payment page
+      window.location.href = link;
     } catch (err) {
       console.error(err);
       alert("Payment initiation failed.");
@@ -39,7 +40,7 @@ function App() {
   return (
     <div className="app-container">
       <div className="form-card">
-        <h1 className="form-title">Fincra Payment-test</h1>
+        <h1 className="form-title">Fincra Payment-API-test-Task</h1>
         <form onSubmit={handleSubmit} className="payment-form">
           <input
             type="text"
@@ -82,14 +83,6 @@ function App() {
             {loading ? "Processing..." : "Pay Now"}
           </button>
         </form>
-
-        {paymentLink && (
-          <div className="payment-link">
-            <a href={paymentLink} target="_blank" rel="noopener noreferrer">
-              Click here to complete your payment
-            </a>
-          </div>
-        )}
       </div>
     </div>
   );
