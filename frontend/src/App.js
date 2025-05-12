@@ -39,7 +39,7 @@ function App() {
   return (
     <div className="app-container">
       <div className="form-card">
-        <h1 className="form-title">Fincra Payment-API-test-Task</h1>
+        <h1 className="form-title">Fincra Payment-test</h1>
         <form onSubmit={handleSubmit} className="payment-form">
           <input
             type="text"
